@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Planit - Smart To-Do App</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="stars"></div>
+
+  <div class="container">
+    <h1>🚀 Planit</h1>
+    <p class="tagline">For doers, dreamers, and deadline chasers.</p>
+
+    <!-- ✅ Task Input Section -->
+    <div class="task-input">
+      <input type="text" id="taskInput" placeholder="Add a new task...">
+      <input type="date" id="taskDate">
+      <input type="time" id="taskTime">
+      <button onclick="addTask()">Add</button>
+    </div>
+
+    <!-- ✅ Filter Buttons -->
+    <div class="filters">
+      <button onclick="renderTasks('all')" class="filter-btn active">All</button>
+      <button onclick="renderTasks('active')" class="filter-btn">Active</button>
+      <button onclick="renderTasks('completed')" class="filter-btn">Completed</button>
+    </div>
+
+    <!-- ✅ Progress Bar -->
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- ✅ Task List -->
+    <ul id="taskList" class="task-list">
+      <!-- Tasks will be inserted here -->
+    </ul>
+  </div>
+
+  <!-- ✅ Footer -->
+  <footer class="footer">
+    &copy; 2025 Tejaswini M. All rights reserved.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
