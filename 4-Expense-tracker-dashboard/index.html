@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trackify - Expense Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Splash Screen -->
+  <div id="splash">
+    <div class="splash-content">
+      <h1 class="logo">Trackify</h1>
+      <p class="tagline">"Every Rupee Counts."</p>
+    </div>
+  </div>
+
+  <!-- Main Dashboard -->
+  <div id="main-dashboard" style="display: none;">
+    <header class="app-header">
+      <h1>Trackify</h1>
+    </header>
+
+    <!-- Summary Cards -->
+    <section class="summary-section">
+      <div class="card balance">₹0<br><span>Total Balance</span></div>
+      <div class="card income">₹0<br><span>Income</span></div>
+      <div class="card expenses">₹0<br><span>Expenses</span></div>
+    </section>
+
+    <!-- Add Transaction Form -->
+    <section class="form-section">
+      <h2>Add Transaction</h2>
+      <form id="transaction-form">
+        <input type="text" id="title" placeholder="Title" required />
+        <input type="number" id="amount" placeholder="Amount ₹" required />
+        <select id="type">
+          <option value="income">Income</option>
+          <option value="expense">Expense</option>
+        </select>
+        <input type="text" id="category" placeholder="Category" />
+        <input type="date" id="date" required />
+        <button type="submit">Add</button>
+      </form>
+    </section>
+
+    <section class="budget-section">
+  <h2>Budget Planner</h2>
+  <form id="budget-form">
+    <input type="text" id="budget-category" placeholder="Category (e.g., Food)" required />
+    <input type="number" id="budget-amount" placeholder="Monthly Budget ₹" required />
+    <button type="submit">Set Budget</button>
+  </form>
+  <div id="budget-bars"></div>
+</section>
+
+    <!-- Chart Section -->
+    <section class="chart-section">
+      <h2>Visual Insights</h2>
+      <div class="chart-row">
+        <div class="chart-box">
+          <h3>Pie Chart</h3>
+          <canvas id="expense-chart"></canvas>
+        </div>
+        <div class="chart-box">
+          <h3>Bar Chart</h3>
+          <canvas id="bar-chart"></canvas>
+        </div>
+        <div class="chart-box">
+          <h3>Line Chart</h3>
+          <canvas id="line-chart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- History Section -->
+    <section class="history-section">
+      <h2>Transaction History</h2>
+      <label for="filter-category">Filter by Category:</label>
+      <select id="filter-category">
+        <option value="All">All</option>
+      </select>
+      <ul id="transaction-list"></ul>
+    </section>
+  </div> 
+
+  <!-- Footer -->
+<footer class="app-footer">
+  © 2025 Tejaswini M. All rights reserved.
+</footer>
+
+
+  <script src="script.js"></script>
+</body>
+</html>

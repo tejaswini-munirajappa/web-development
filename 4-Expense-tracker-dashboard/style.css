@@ -1,0 +1,197 @@
+/* Splash Screen */
+#splash {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  background-size: 200% 200%;
+  animation: bgPulse 5s ease-in-out infinite, splashExit 1s ease-in-out 2.8s forwards;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.splash-content {
+  text-align: center;
+}
+
+.logo {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 0.2rem;
+  opacity: 0;
+  animation: fadeInLogo 1.2s ease-in-out forwards;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #dddddd;
+  opacity: 0;
+  animation: fadeInTagline 1.2s ease-in-out 1.3s forwards;
+}
+
+@keyframes fadeInLogo {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInTagline {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bgPulse {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes splashExit {
+  100% {
+    opacity: 0;
+    transform: scale(1.05);
+    visibility: hidden;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9fafb;
+  color: #111827;
+}
+
+.app-header {
+  text-align: center;
+  padding: 2rem;
+  background-color: #1f2937;
+  color: white;
+}
+
+.summary-section {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 2rem;
+  background: #f3f4f6;
+}
+
+.card {
+  flex: 1 1 200px;
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.card span {
+  display: block;
+  margin-top: 0.5rem;
+  font-weight: normal;
+  color: #555;
+}
+
+.balance { border-left: 5px solid #3b82f6; }
+.income { border-left: 5px solid #10b981; }
+.expenses { border-left: 5px solid #ef4444; }
+
+.form-section, .budget-section {
+  padding: 2rem;
+  background: #ffffff;
+}
+
+.form-section h2, .budget-section h2 {
+  margin-bottom: 1rem;
+}
+
+#transaction-form, #budget-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+#transaction-form input,
+#transaction-form select,
+#transaction-form button,
+#budget-form input,
+#budget-form button {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  flex: 1 1 200px;
+}
+
+#transaction-form button,
+#budget-form button {
+  background-color: #4f46e5;
+  color: white;
+  cursor: pointer;
+}
+
+.chart-section {
+  padding: 2rem;
+}
+
+.chart-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.chart-box {
+  width: 300px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.history-section {
+  padding: 2rem;
+}
+
+#filter-category {
+  padding: 0.5rem;
+  margin: 1rem 0;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.history-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.history-section li {
+  background: #f9fafb;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  border-left: 5px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 6px;
+  font-size: 1rem;
+} 
+
+.app-footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  background-color: #1f2937;
+  color: #ffffff;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin-top: 2rem;
+}
+
