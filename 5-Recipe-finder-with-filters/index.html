@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dishcovery</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- Splash Screen -->
+  <div id="splash">
+    <div class="top-panel"></div>
+    <div class="bottom-panel"></div>
+    <div class="splash-content">
+      <h1>🍽️ Dishcovery</h1>
+      <p>Discover dishes from every corner of the earth.</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main id="main-content" style="display: none;">
+    <!-- Hero Section -->
+    <section class="hero">
+      <h2>Explore World Recipes 🌍</h2>
+      <p>Filter your cravings. Discover new tastes.</p>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search for a dish or ingredient...">
+        <button onclick="applyFiltersAndSearch()" class="search-btn">
+          <i class="fas fa-search"></i> Search
+        </button>
+      </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters">
+      <select id="cuisineFilter">
+        <option value="all">All Cuisines</option>
+        <option value="indian">Indian</option>
+        <option value="italian">Italian</option>
+        <option value="mexican">Mexican</option>
+        <option value="local">Local</option>
+      </select>
+      <select id="dietFilter">
+        <option value="all">All Diets</option>
+        <option value="vegetarian">Vegetarian</option>
+        <option value="vegan">Vegan</option>
+        <option value="gluten-free">Gluten-Free</option>
+      </select>
+      <select id="mealTypeFilter">
+        <option value="all">All Meal Types</option>
+        <option value="breakfast">Breakfast</option>
+        <option value="lunch">Lunch</option>
+        <option value="dinner">Dinner</option>
+        <option value="dessert">Dessert</option>
+      </select>
+    </section>
+
+    <!-- Recipes Grid -->
+    <section id="recipeContainer" class="recipe-grid">
+      <!-- Recipe cards will be populated here -->
+    </section>
+
+    <!-- Recommendations Section -->
+    <section class="recommendations">
+      <h3>Breakfast Ideas</h3>
+      <div id="breakfastContainer" class="recommendation-grid"></div>
+
+      <h3>Lunch Specials</h3>
+      <div id="lunchContainer" class="recommendation-grid"></div>
+
+      <h3>Dinner Picks</h3>
+      <div id="dinnerContainer" class="recommendation-grid"></div>
+
+      <h3>Dessert Cravings</h3>
+      <div id="dessertContainer" class="recommendation-grid"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Tejaswini M. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #fffaf5;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Splash screen */
+#splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.top-panel,
+.bottom-panel {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  z-index: 2;
+  transition: transform 1.5s ease-in-out;
+}
+
+.top-panel { top: 0; }
+.bottom-panel { bottom: 0; }
+
+#splash.active .top-panel {
+  transform: translateY(-100%);
+}
+
+#splash.active .bottom-panel {
+  transform: translateY(100%);
+}
+
+.splash-content {
+  background: url('foodbg.jpg') center center/cover no-repeat;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  color: white;
+  text-align: center;
+  text-shadow: 0 2px 6px #000;
+  z-index: 1;
+  transition: opacity 1.5s ease 1s;
+}
+
+#splash.active .splash-content {
+  opacity: 1;
+}
+
+.splash-content h1 {
+  font-size: 3.5rem;
+}
+
+.splash-content p {
+  font-size: 1.2rem;
+  margin-top: 0.8rem;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 60px 20px 30px;
+  background: #fff;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  color: #ff6f61;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+  color: #777;
+}
+
+.search-box {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.search-box input {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  width: 300px;
+  font-size: 1rem;
+}
+
+.search-box button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: none;
+  background: #ff6f61;
+  color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.search-box button:hover {
+  background: #e65448;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 20px;
+  background: #fff8f2;
+}
+
+.filters select {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+/* Recipe Grid */
+.recipe-grid,
+.recommendation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 40px 20px;
+}
+
+/* Recipe Card */
+.recipe-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.recipe-card .content {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recipe-card h3 {
+  font-size: 1.3rem;
+  color: #ff6f61;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.recipe-card button {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  background: #ff6f61;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.recipe-card button:hover {
+  background: #e65448;
+}
+
+/* Recommendations Section */
+.recommendations {
+  background: #fff8f2;
+  padding: 40px 20px;
+  
+}
+
+.recommendations h3 {
+  color: #ff6f61;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.modal-content h2 {
+  margin-bottom: 15px;
+  color: #ff6f61;
+  font-size: 1.5rem;
+}
+
+.modal-content ol {
+  padding-left: 20px;
+}
+
+.modal-content li {
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.modal-content button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.modal-content button:hover {
+  background-color: #e65448;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #fff2ec;
+  color: #888;
+  font-size: 0.9rem;
+} 
