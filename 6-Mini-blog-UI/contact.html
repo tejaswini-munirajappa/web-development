@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Blogsy - Simply write and share</title>
+    <!-- Link to your main CSS so the header/footer look consistent -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <!-- Blogsy title as a link back to home -->
+                <h1><a href="index.html" style="text-decoration: none; color: inherit;">Blogsy</a></h1>
+                <p class="tagline">Simply write and share</p>
+            </div>
+            <ul class="nav-links">
+                <!-- Corrected navigation links -->
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="static-page-main">
+        <section class="page-content-card">
+            <h2>Contact Us</h2>
+            <p>We'd love to hear from you! Whether you have questions, feedback, or suggestions, please don't hesitate to get in touch.</p>
+
+            <div class="contact-info">
+                <h3>General Inquiries:</h3>
+                <p>Email: <a href="mailto:info@blogsy.com">info@blogsy.com</a></p>
+
+                <h3>Support:</h3>
+                <p>For any technical issues or help with your posts:</p>
+                <p>Email: <a href="mailto:support@blogsy.com">support@blogsy.com</a></p>
+
+                <h3>Social Media:</h3>
+                <p>Connect with us on our social channels:</p>
+                <ul>
+                    <li><a href="#" target="_blank">Twitter/X</a></li>
+                    <li><a href="#" target="_blank">Instagram</a></li>
+                    <li><a href="#" target="_blank">Facebook</a></li>
+                </ul>
+            </div>
+
+            <!-- Basic Contact Form (Optional, requires backend for submission) -->
+            <h3>Send us a Message:</h3>
+            <form action="#" method="POST" class="contact-form">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject">
+
+                <label for="message">Your Message:</label>
+                <textarea id="message" name="message" rows="7" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+            <p class="form-note">Note: This is a static UI. A functional contact form requires a backend server to process submissions.</p>
+
+        </section>
+    </main>
+
+    <footer>
+    <p>&copy; 2025 Tejaswini M. All rights reserved.</p>
+</footer>
+</body>
+</html>

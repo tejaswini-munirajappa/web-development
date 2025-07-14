@@ -1,0 +1,430 @@
+/* General Reset and Body Styling */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.hidden {
+    display: none;
+}
+
+/* --- Welcome Box Styling with Gradient --- */
+#welcome-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #007bff 0%, #00c6ff 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+
+.welcome-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+}
+
+.welcome-content h2 {
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.welcome-content p {
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.welcome-content label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.welcome-content input[type="text"] {
+    width: calc(100% - 24px);
+    padding: 12px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+.welcome-content button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.welcome-content button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* --- Main App Header/Nav Styling --- */
+header {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 15px 0;
+    flex-shrink: 0;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.nav-brand h1 {
+    font-size: 1.8em;
+    color: #007bff;
+    margin: 0;
+}
+
+.nav-brand .tagline {
+    font-size: 0.85em;
+    color: #6c757d;
+    margin-top: 2px;
+    font-style: normal;
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #555;
+    font-weight: bold;
+    font-size: 1.05em;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #007bff;
+}
+
+/* --- Main Content Area Styling --- */
+main {
+    padding: 20px 0;
+    flex-grow: 1;
+}
+
+.post-form-container,
+.blog-posts-container {
+    background-color: #fff;
+    padding: 25px;
+    margin: 25px auto;
+    max-width: 700px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.post-form-container h2,
+.blog-posts-container h2 {
+    color: #343a40;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.post-form-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.post-form-container input[type="text"],
+.post-form-container textarea {
+    width: calc(100% - 24px);
+    padding: 12px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+.post-form-container textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.post-form-container button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.post-form-container button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* --- Blog Post Cards --- */
+.blog-post-card {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+    border-left: 5px solid #007bff;
+}
+
+.blog-post-card h3 {
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 1.5em;
+}
+
+.blog-post-card .post-meta {
+    font-size: 0.85em;
+    color: #777;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.blog-post-card p {
+    color: #444;
+}
+
+.blog-post-card .delete-btn {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85em;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.blog-post-card .delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* --- Footer Styling --- */
+footer {
+    text-align: center;
+    padding: 1.2rem 0;
+    background-color: #343a40;
+    color: #f8f9fa;
+    margin-top: auto;
+    flex-shrink: 0;
+}
+
+/* --- Message Box Styling --- */
+.message-box {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #28a745;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 1002;
+    transition: opacity 0.5s ease;
+}
+
+.message-box.error {
+    background-color: #dc3545;
+}
+
+.message-box.success {
+    background-color: #28a745;
+}
+
+/* --- Basic Responsiveness --- */
+@media (max-width: 768px) {
+    .main-nav {
+        flex-direction: column;
+        align-items: center;
+        padding: 0 15px;
+    }
+
+    .nav-links {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .post-form-container,
+    .blog-posts-container {
+        margin: 15px auto;
+        padding: 20px;
+        max-width: 95%;
+    }
+
+    .welcome-content {
+        padding: 20px;
+        max-width: 80%;
+    }
+}
+/* --- Static Pages Styling (About, Contact, etc.) --- */
+.static-page-main {
+    padding: 40px 0;
+}
+
+.page-content-card {
+    background-color: #fff;
+    padding: 30px;
+    margin: 0 auto;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.page-content-card h2 {
+    color: #007bff;
+    font-size: 2em;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.page-content-card h3 {
+    color: #343a40;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.page-content-card p,
+.page-content-card ul {
+    font-size: 1.05em;
+    color: #444;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.page-content-card ul {
+    list-style-type: disc;
+    margin-left: 25px;
+    padding-left: 0;
+}
+
+.page-content-card ul li {
+    margin-bottom: 8px;
+}
+
+.about-signature {
+    margin-top: 40px;
+    text-align: right;
+    font-style: italic;
+    color: #666;
+}
+/* --- Contact Info Section --- */
+.contact-info h3 {
+    margin-top: 20px;
+    color: #343a40;
+}
+
+.contact-info a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* --- Contact Form Styling --- */
+.contact-form {
+    margin-top: 20px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.contact-form button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #0056b3;
+}
+
+.form-note {
+    font-size: 0.85em;
+    color: #777;
+    margin-top: 10px;
+    font-style: italic;
+}
