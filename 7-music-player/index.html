@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrooveHub - Search, Play, and Groove!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1e1e1e;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            padding-bottom: 120px; /* space for now playing */
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.2em;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2em;
+            color: #ccc;
+        }
+
+        input[type="text"] {
+            width: 60%;
+            padding: 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            background: #ff4081;
+            color: #fff;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .results, .recommendations {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 2em;
+        }
+
+        .song-card {
+            background: #333;
+            border-radius: 10px;
+            margin: 10px;
+            padding: 15px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            cursor: pointer;
+        }
+
+        .song-card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        #searchResultsTitle, #favoritesTitle {
+            display: none;
+        }
+
+        #favoritesSection {
+            display: none;
+        }
+
+        #nowPlaying {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #111;
+            color: #fff;
+            padding: 15px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        #nowPlayingControls {
+            margin-top: 10px;
+        }
+
+        .control-btn {
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: #fff;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        #nowPlaying p {
+            margin: 0 0 10px 0;
+            font-weight: bold;
+        }
+
+        #nowPlaying audio {
+            width: 300px;
+            margin-bottom: 10px;
+        }
+
+        #fullSongLink {
+            color: #ff4081;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>GrooveHub</h1>
+    <p>Search, Play, and Groove to Your Favorite Beats!</p>
+
+    <input type="text" id="searchInput" placeholder="Search for songs, artists, or movies">
+    <button onclick="searchMusic()">Search</button>
+    <button onclick="viewFavorites()">❤️ My Favorites</button>
+
+    <h2>Recommended for You</h2>
+    <button onclick="loadRecommendations('top hits')">Top Hits</button>
+    <button onclick="loadRecommendations('english hits')">English Songs</button>
+    <button onclick="loadRecommendations('hindi songs')">Hindi Songs</button>
+    <button onclick="loadRecommendations('kannada songs')">Kannada Songs</button>
+
+    <div class="recommendations" id="recommendations"></div>
+
+    <h2 id="searchResultsTitle">Search Results</h2>
+    <div class="results" id="results"></div>
+
+    <h2 id="favoritesTitle">Favorites Playlist</h2>
+    <div class="recommendations" id="favoritesSection"></div>
+
+    <div id="nowPlaying">
+        <p id="nowPlayingInfo"></p>
+        <p style="font-size: 0.9rem; color: #ccc;">30-second preview only</p>
+        <a id="fullSongLink" href="#" target="_blank">Listen to Full Song on Apple Music</a>
+        <audio id="nowPlayingAudio" controls></audio>
+        <div id="nowPlayingControls">
+            <button class="control-btn" onclick="prevSong()">⏮️</button>
+            <button class="control-btn" onclick="toggleFavorite()">❤️</button>
+            <button class="control-btn" onclick="nextSong()">⏭️</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSongIndex = -1;
+        let currentSongList = [];
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+        window.onload = function() {
+            loadRecommendations('top hits');
+        }
+
+        function loadRecommendations(query) {
+            document.getElementById('searchResultsTitle').style.display = 'none';
+            document.getElementById('favoritesTitle').style.display = 'none';
+            document.getElementById('favoritesSection').style.display = 'none';
+            document.getElementById('results').innerHTML = '';
+            fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(query)}&entity=song&limit=8`)
+                .then(response => response.json())
+                .then(data => {
+                    currentSongList = data.results;
+                    const recommendationsDiv = document.getElementById('recommendations');
+                    recommendationsDiv.innerHTML = '';
+
+                    data.results.forEach((song, index) => {
+                        const songCard = createSongCard(song, index);
+                        recommendationsDiv.appendChild(songCard);
+                    });
+                })
+                .catch(error => console.error('Error loading recommendations:', error));
+        }
+
+        function searchMusic() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (!query) return;
+
+            document.getElementById('recommendations').innerHTML = '';
+            document.getElementById('favoritesTitle').style.display = 'none';
+            document.getElementById('favoritesSection').style.display = 'none';
+            fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(query)}&entity=song&limit=10`)
+                .then(response => response.json())
+                .then(data => {
+                    currentSongList = data.results;
+                    const resultsDiv = document.getElementById('results');
+                    resultsDiv.innerHTML = '';
+
+                    if (data.results.length === 0) {
+                        resultsDiv.innerHTML = '<p>No songs found. Try another search.</p>';
+                        return;
+                    }
+
+                    document.getElementById('searchResultsTitle').style.display = 'block';
+
+                    data.results.forEach((song, index) => {
+                        const songCard = createSongCard(song, index);
+                        resultsDiv.appendChild(songCard);
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        function createSongCard(song, index) {
+            const songCard = document.createElement('div');
+            songCard.className = 'song-card';
+            songCard.innerHTML = `
+                <img src="${song.artworkUrl100}" alt="Album Art">
+                <h3>${song.trackName}</h3>
+                <p>${song.artistName}</p>
+            `;
+            songCard.addEventListener('click', () => playSong(index));
+            return songCard;
+        }
+
+        function playSong(index) {
+            const song = currentSongList[index];
+            currentSongIndex = index;
+
+            const nowPlaying = document.getElementById('nowPlaying');
+            const nowPlayingInfo = document.getElementById('nowPlayingInfo');
+            const nowPlayingAudio = document.getElementById('nowPlayingAudio');
+            const fullSongLink = document.getElementById('fullSongLink');
+
+            nowPlayingInfo.textContent = `${song.trackName} by ${song.artistName}`;
+            nowPlayingAudio.src = song.previewUrl;
+            fullSongLink.href = song.trackViewUrl || '#';
+            nowPlaying.style.display = 'flex';
+            nowPlayingAudio.play();
+        }
+
+        function prevSong() {
+            if (currentSongIndex > 0) {
+                playSong(currentSongIndex - 1);
+            }
+        }
+
+        function nextSong() {
+            if (currentSongIndex < currentSongList.length - 1) {
+                playSong(currentSongIndex + 1);
+            }
+        }
+
+        function toggleFavorite() {
+            const song = currentSongList[currentSongIndex];
+            if (!favorites.find(fav => fav.trackId === song.trackId)) {
+                favorites.push(song);
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+                alert('Added to Favorites!');
+            } else {
+                alert('Already in Favorites!');
+            }
+        }
+
+        function viewFavorites() {
+            const favSection = document.getElementById('favoritesSection');
+            const favTitle = document.getElementById('favoritesTitle');
+            const recommendationsDiv = document.getElementById('recommendations');
+            const resultsDiv = document.getElementById('results');
+            const searchResultsTitle = document.getElementById('searchResultsTitle');
+
+            recommendationsDiv.innerHTML = '';
+            resultsDiv.innerHTML = '';
+            searchResultsTitle.style.display = 'none';
+            favTitle.style.display = 'block';
+            favSection.style.display = 'flex';
+            favSection.innerHTML = '';
+
+            if (favorites.length === 0) {
+                favSection.innerHTML = '<p>No favorites yet!</p>';
+            } else {
+                currentSongList = favorites;
+                favorites.forEach((song, index) => {
+                    const card = createSongCard(song, index);
+                    favSection.appendChild(card);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
